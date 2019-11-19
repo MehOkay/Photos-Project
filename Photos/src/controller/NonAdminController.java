@@ -66,7 +66,7 @@ public class NonAdminController {
 	public void handleLogOutButton(ActionEvent event) {
 
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginScreen.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
 			Parent parent = (Parent) loader.load();
 			@SuppressWarnings("unused")
 			LoginController controller = loader.getController();
