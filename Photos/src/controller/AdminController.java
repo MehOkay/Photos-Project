@@ -27,7 +27,7 @@ public class AdminController {
 	private ListView<User> users;
 	
 	@FXML
-	private TextField userN;
+	private TextField UserN;
 	
 	@FXML
 	private Button Logout, createU, deleteU,
@@ -47,7 +47,7 @@ public class AdminController {
 	 * Creates a new user and adds them to the system
 	 */
 	public void createUser() {
-		User newUser = new User(userN.getText());
+		User newUser = new User(UserN.getText());
 		ObservableList<User> userList = users.getItems();
 	
 		for (User currentUser : userList) {
@@ -65,7 +65,7 @@ public class AdminController {
 		users.getItems().add(newUser);
 		users.refresh();
 		writeData();
-		userN.clear();
+		UserN.clear();
 	}
 	
 	/**
