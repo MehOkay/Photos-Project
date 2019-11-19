@@ -71,20 +71,21 @@ public class LoginController {
 			try {
 				data.createNewFile();
 				Album stockAlbum = new Album("stock");
-				String stockPhotoPath = "stock/stockImg";
-				//File photoFile;
+				String stockPhotoPath = "data/stock";
+				File photoFile;
 				for (int currentPhoto = 1; currentPhoto <= 5; currentPhoto++) {
-					//photoFile = new File(stockPhotoPath + "/img" + Integer.toString(currentPhoto) + ".jpg");
+					photoFile = new File(stockPhotoPath + "/stockImg" + Integer.toString(currentPhoto) + ".jpg");
 					
-					//if (photoFile != null) {
-						Image image = new Image(stockPhotoPath + Integer.toString(currentPhoto) + ".jpg");
-						String name = "stockImg" + Integer.toString(currentPhoto) + ".jpg";
+					if (photoFile != null) {
+						System.out.println(stockPhotoPath + Integer.toString(currentPhoto) + ".jpg/");
+						Image image = new Image(photoFile.toURI().toString());
+						String name = photoFile.getName();
 						Calendar date = Calendar.getInstance();
-						//date.setTimeInMillis(photoFile.lastModified());
+						date.setTimeInMillis(photoFile.lastModified());
 						Photo newPhoto = new Photo(name, image, date);
 
 						stockAlbum.getPhotos().add(newPhoto);
-					//}
+					}
 				}
 
 				User stock = new User("stock");
