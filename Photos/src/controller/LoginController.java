@@ -73,11 +73,11 @@ public class LoginController {
 				Album stockAlbum = new Album("stock");
 				String stockPhotoPath = "data/stock";
 				File photoFile;
-				for (int currentPhoto = 1; currentPhoto <= 5; currentPhoto++) {
-					photoFile = new File(stockPhotoPath + "/stockImg" + Integer.toString(currentPhoto) + ".jpg");
+				for (int i = 1; i <= 5; i++) {
+					photoFile = new File(stockPhotoPath + "/stockImg" + Integer.toString(i) + ".jpg");
 					
 					if (photoFile != null) {
-						System.out.println(stockPhotoPath + Integer.toString(currentPhoto) + ".jpg/");
+						//System.out.println(stockPhotoPath + Integer.toString(i) + ".jpg/");
 						Image image = new Image(photoFile.toURI().toString());
 						String name = photoFile.getName();
 						Calendar date = Calendar.getInstance();
@@ -92,6 +92,10 @@ public class LoginController {
 				stock.getAlbums().add(stockAlbum);
 				users = new ArrayList<User>();
 				users.add(stock);
+				
+				/*for(User u: users) {
+					System.out.println("Hello My name is" + " " + u);
+				}*/
 
 				try {
 					FileOutputStream fileOutputStream = new FileOutputStream(path);
@@ -129,7 +133,7 @@ public class LoginController {
 			if (username.equals("admin") || user != null) {
 				FXMLLoader loader;
 				Parent parent;
-
+				
 				if (username.equals("admin")) {
 					loader = new FXMLLoader(getClass().getResource("/view/Admin.fxml"));
 					parent = (Parent) loader.load();
@@ -139,7 +143,8 @@ public class LoginController {
 					controller.start(users);
 					stage.setScene(scene);
 					stage.show();
-				} else {
+				} 
+				else if(!username.equals("admin")) {
 					loader = new FXMLLoader(getClass().getResource("/view/non-admin.fxml"));
 					parent = (Parent) loader.load();
 					NonAdminController controller = loader.getController();
