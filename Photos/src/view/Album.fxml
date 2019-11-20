@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller = "controller.AlbumController">
    <children>
       <Button fx:id="add" contentDisplay="CENTER" layoutX="53.0" layoutY="83.0" mnemonicParsing="false" onAction="#addPhoto" prefHeight="25.0" prefWidth="94.0" text="Add Photo" />
       <Button fx:id="remove" contentDisplay="CENTER" layoutX="164.0" layoutY="83.0" mnemonicParsing="false" onAction="#removePhoto" text="Remove Photo" />

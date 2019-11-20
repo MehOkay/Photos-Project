@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NonAdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NonAdminController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="212.0">
          <children>
@@ -25,6 +25,6 @@
             <TextField fx:id="albumField" layoutX="14.0" layoutY="82.0" prefHeight="25.0" prefWidth="182.0" />
          </children>
       </AnchorPane>
-      <ListView fx:id="albums" layoutX="212.0" layoutY="19.0" prefHeight="363.0" prefWidth="374.0" />
+      <ListView fx:id="albums" layoutX="212.0" layoutY="19.0" prefHeight="466.0" prefWidth="473.0" />
    </children>
 </AnchorPane>

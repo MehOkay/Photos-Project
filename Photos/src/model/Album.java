@@ -102,9 +102,16 @@ public class Album implements Serializable {
 	public String toString() {
 		//Date minRange = this.minDate.getInstance().getTime();
 		//Date maxRange = this.maxDate.getInstance().getTime();
+		String minRange = "Null";
+		String maxRange = "Null";
+		
+		if(!photos.isEmpty()) {
+			
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
-		String minRange = formatter.format(this.minDate.getTime());  
-		String maxRange = formatter.format(this.maxDate.getTime());
+		minRange = formatter.format(this.minDate.getTime());  
+		maxRange = formatter.format(this.maxDate.getTime());
+		
+		}
 		
 		String result = "Name: " + name + "\nPhoto Count: " + photos.size() + "\nDate Range: " + minRange + " - " + maxRange; 
 		
