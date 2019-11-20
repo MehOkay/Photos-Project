@@ -39,8 +39,8 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="addTag" layoutX="300.0" layoutY="393.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="73.0" text="Add Tag" />
-      <Button fx:id="deleteTag" layoutX="302.0" layoutY="426.0" mnemonicParsing="false" onAction="#delete" text="Delete Tag" />
+      <Button fx:id="addTag" layoutX="292.0" layoutY="393.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="89.0" text="Add Tag" />
+      <Button fx:id="deleteTag" layoutX="292.0" layoutY="426.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="89.0" text="Delete Tag" />
       <TextArea fx:id="tagName" layoutX="245.0" layoutY="342.0" prefHeight="35.0" prefWidth="89.0" />
       <ImageView fx:id="Display" fitHeight="159.0" fitWidth="381.0" layoutX="34.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="photoName" alignment="CENTER" layoutX="175.0" layoutY="88.0" prefHeight="27.0" prefWidth="100.0" />

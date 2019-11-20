@@ -19,29 +19,11 @@ import model.Album;
 
 public class PhotoSearchController {
 	@FXML
-	TextField tagName1;
+	TextField tagName1, tagName2, tagValue1, tagValue2;
 	@FXML
-	TextField tagName2;
+	Button Single, Either, Both, Date, Add, createAlbum;
 	@FXML
-	TextField tagValue1;
-	@FXML
-	TextField tagValue2;
-	@FXML
-	Button Single;
-	@FXML
-	Button Either;
-	@FXML
-	Button Both;
-	@FXML
-	Button Date;
-	@FXML
-	Button Add;
-	@FXML
-	Button createAlbum;
-	@FXML
-	DatePicker FromDate;
-	@FXML
-	DatePicker ToDate;
+	DatePicker FromDate, ToDate;
 	@FXML
 	ListView<Photo> photoDisplay;
 	@FXML
