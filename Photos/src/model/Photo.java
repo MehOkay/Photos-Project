@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
  * @author Wesley Cheung
  * @author Dennis Yu
  */
-public class Photo implements Serializable {
+public class Photo implements Serializable, Comparable<Photo> {
 
 	
 	private static final long serialVersionUID = 6955723612371190680L;
@@ -104,5 +104,16 @@ public class Photo implements Serializable {
 	 */
 	public boolean equals(Photo other) {
 		return this.name.equals(other.name);
+	}
+
+	/**
+	 * compares the date of 2 photos
+	 * @param p is the photo that is being compared
+	 * @return int corresponding to date of 2 photos
+	 */
+	@Override
+	public int compareTo(Photo p) {
+		// TODO Auto-generated method stub
+		return this.date.compareTo(p.getDate());
 	}
 }

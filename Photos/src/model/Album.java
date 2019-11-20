@@ -1,7 +1,13 @@
 package model;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Wesley Cheung
@@ -12,6 +18,8 @@ public class Album implements Serializable {
 	private static final long serialVersionUID = 1891567810783724951L;
 	private String name;
 	private ArrayList<Photo> photos;
+	private Calendar minDate;
+	private Calendar maxDate;
 	
 	/**
 	 * Constructor
@@ -36,6 +44,31 @@ public class Album implements Serializable {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * 
+	 */
+	public Calendar getMinDate() {
+		return this.minDate;
+	}
+	
+	/**
+	 * 
+	 */
+	public Calendar getMaxDate() {
+		return this.maxDate;
+	}
+	
+	/**
+	 * 
+	 */
+	public void updateDateRange() {
+		if(!this.photos.isEmpty()) {
+			Collections.sort(this.photos);
+		}
+		this.minDate = this.photos.get(0).getDate();
+		this.maxDate = this.photos.get(photos.size()-1).getDate();
 	}
 	
 	/**
@@ -67,7 +100,13 @@ public class Album implements Serializable {
 	 * Returns a string representation of this album
 	 */
 	public String toString() {
-		String result = "NAME: " + name + "\nPHOTO COUNT: " + photos.size(); 
+		//Date minRange = this.minDate.getInstance().getTime();
+		//Date maxRange = this.maxDate.getInstance().getTime();
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
+		String minRange = formatter.format(this.minDate.getTime());  
+		String maxRange = formatter.format(this.maxDate.getTime());
+		
+		String result = "Name: " + name + "\nPhoto Count: " + photos.size() + "\nDate Range: " + minRange + " - " + maxRange; 
 		
 		return result;
 	}
