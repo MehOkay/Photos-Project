@@ -119,16 +119,4 @@ public class PhotoContentController {
 			}
 		}
 	}
-	/*
-	public void exit() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Album.fxml"));
-		Parent parent = (Parent) loader.load();
-		AlbumController controller = loader.<AlbumController>getController();
-		Scene scene = new Scene(parent);
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		controller.start(users, user, selectedAlbum);
-		stage.setScene(scene);
-		stage.show();
-	}*/
-	
 }

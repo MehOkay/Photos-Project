@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.util.Calendar; 
 import java.util.ArrayList;
 import model.User;
 import model.Photo;
@@ -29,9 +30,9 @@ public class PhotoSearchController {
 	@FXML Button createAlbum;
 	@FXML DatePicker FromDate;
 	@FXML DatePicker ToDate;
-	@FXML ListView photoDisplay;
-	@FXML ListView TagNames;
-	@FXML ListView TagValues;
+	@FXML ListView<Photo> photoDisplay;
+	@FXML ListView<String> TagNames;
+	@FXML ListView<String> TagValues;
 	
 	ListView<Tag> tags;
 	ArrayList<User> users;
@@ -75,7 +76,9 @@ public class PhotoSearchController {
 			tags.getItems().add(input);
 			tags.refresh();
 			tags.getSelectionModel().select(0);
+			TagNames.refresh();
 			TagNames.getSelectionModel().select(0);
+			TagValues.refresh();
 			TagValues.getSelectionModel().select(0);
 			
 		} else {
@@ -88,6 +91,7 @@ public class PhotoSearchController {
 		ArrayList<Album> albums = user.getAlbums();
 		ArrayList<Photo> displayList = new ArrayList<Photo>();
 		Tag input1, input2;
+		
 		boolean one, two;
 		if(tagName1.getText().isEmpty() && tagValue1.getText().isEmpty())
 			one = false;
@@ -128,8 +132,7 @@ public class PhotoSearchController {
 							if(tags.get(k).equals(input1) || tags.get(k).equals(input2)) {
 								displayList.add(photos.get(j));
 								break;}}}}
-			}
-			else 
+			} else 
 				return;
 		} else if(b == Both) {
 			if(one && two) {
@@ -156,15 +159,38 @@ public class PhotoSearchController {
 							two = false;
 						}
 					}
-			}
+			} else
+				return;
 			
 		} else if(b == Date) {
-			
+			if (checkDates()) {
+				String[] from = FromDate.getValue().toString().split("-");
+				String[] to = ToDate.getValue().toString().split("-");
+				LocalDate fr = LocalDate.of(Integer.parseInt(from[0]), Integer.parseInt(from[1]), 
+						Integer.parseInt(from[2]));
+				LocalDate t = LocalDate.of(Integer.parseInt(to[0]), Integer.parseInt(to[1]), 
+						Integer.parseInt(to[2]));
+				
+				for(int i = 0; i < albums.size(); i++) {
+					ArrayList<Photo> photos = albums.get(i).getPhotos();
+					for(int j = 0; j < photos.size(); j++) {
+						if(photos.get(j).getDate().after(from) && photos.get(j).getDate().before(t))
+							if(!displayList.contains(photos.get(j)))
+								displayList.add(photos.get(j));
+					}
+				}
+				
+			}
 		} else
 			return;
 		
+		photoDisplay.refresh();
 		photoDisplay.setItems(FXCollections.observableArrayList(displayList));
 		photoDisplay.getSelectionModel().select(0);
+		tagName1.clear();
+		tagValue1.clear();
+		tagName2.clear();
+		tagValue2.clear();
 		
 	}
 	
@@ -174,7 +200,17 @@ public class PhotoSearchController {
 		}
 		else
 			return true;
-		
 	}
 	
+	public void createFromSearch() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Calendar date = Calendar.getInstance();
+		Album album = new Album("Search Result " + dateFormat.format(date.getTime()).toString());
+		user.getAlbums().add(album);
+
+		for(int i = 0; i < photoDisplay.getItems().size(); i++)
+			album.getPhotos().add(photoDisplay.getItems().get(i));
+		
+		
+	}
 }
