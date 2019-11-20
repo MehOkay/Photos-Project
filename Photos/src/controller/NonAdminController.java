@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import helper.SerializeData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -114,7 +115,7 @@ public class NonAdminController {
 		albums.getItems().add(newAlbum);
 		albums.getSelectionModel().select(newAlbum);
 		albums.refresh();
-		//CommonFunctions.saveData(users);
+		SerializeData.writeData(users);
 		albumField.clear();
 		}
 	}
@@ -167,7 +168,7 @@ public class NonAdminController {
 			user.getAlbums().remove(album);
 			albums.getItems().remove(album);
 			albums.refresh();
-			//CommonFunctions.saveData(users);
+			SerializeData.writeData(users);
 		}
 	}
 	
@@ -193,7 +194,7 @@ public class NonAdminController {
 		if(!albumField.getText().equals("")) {
 			albums.getSelectionModel().getSelectedItem().setName(albumField.getText());
 			albums.refresh();
-			//CommonFunctions.saveData(users);
+			SerializeData.writeData(users);
 			albumField.clear();
 		}
 	}
