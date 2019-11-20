@@ -15,16 +15,12 @@ public class Photo implements Serializable, Comparable<Photo> {
 	
 	private static final long serialVersionUID = 6955723612371190680L;
 	private ArrayList<Tag> tags;
-	private String name, caption;
+	private String name;
+	private String caption;
 	private ConvertedImage image;
 	private Calendar date;
 
-	/**
-	 * Constructor
-	 * @param name the name of the photo
-	 * @param image the image to be represented by the photo
-	 * @param date the last modified date
-	 */
+	/*
 	public Photo(String name, ConvertedImage image, Calendar date) {
 		this.name = name;
 		this.caption = "";
@@ -32,10 +28,10 @@ public class Photo implements Serializable, Comparable<Photo> {
 		this.date = date;
 		this.tags = new ArrayList<Tag>();
 		this.date.set(Calendar.MILLISECOND, 0);
-	}
+	}*/
 
 	/**
-	 * 2nd constructor
+	 * constructor
 	 * @param name the name of the photo
 	 * @param image the image to be represented by the photo
 	 * @param date the last modified date

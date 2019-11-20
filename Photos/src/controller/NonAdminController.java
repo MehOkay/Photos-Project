@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,7 +23,7 @@ import javafx.stage.Stage;
 import model.Album;
 import model.SerializeData;
 import model.User;
-//import util.CommonFunctions;
+
 
 /**
  * The non-admin controller allows regular users to manipulate their albums
@@ -37,12 +36,22 @@ import model.User;
 public class NonAdminController {
 	
 	@FXML
-	private Button openAlbumButton, addAlbumButton, deleteAlbumButton, renameAlbumButton, searchPhotosButton,
-			logOutButton;
+	private Button openAlbumButton;
+	@FXML
+	private Button addAlbumButton;
+	@FXML
+	private Button deleteAlbumButton;
+	@FXML
+	private Button renameAlbumButton;
+	@FXML
+	private Button searchPhotosButton;
+	@FXML
+	private Button logOutButton;
 	@FXML
 	private TextField albumField;
 	@FXML
 	private ListView<Album> albums;
+	
 	private ArrayList<User> users;
 	private User user;
 
@@ -71,7 +80,7 @@ public class NonAdminController {
 	 * 
 	 * @param event
 	 */
-	public void handleLogOutButton(ActionEvent event) {
+	public void logOut(ActionEvent event) {
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
@@ -92,7 +101,7 @@ public class NonAdminController {
 	/**
 	 * clicking the add button takes the user inputed text and creates a new album
 	 */
-	public void handleAddAlbumButton() {
+	public void addAlbum() {
 		ObservableList<Album> albumList = albums.getItems();
 
 		for (Album currentAlbum : albumList) {
@@ -115,67 +124,16 @@ public class NonAdminController {
 		albums.getItems().add(newAlbum);
 		albums.getSelectionModel().select(newAlbum);
 		albums.refresh();
-		SerializeData.writeData(users);
 		albumField.clear();
-		}
-	}
-	
-	/**
-	 * Opens Album stage that displays content for selected album
-	 * @param event
-	 */
-	public void handleOpenAlbumButton(ActionEvent event) {
+		SerializeData.writeData(users);
 		
-		Album selectedAlbum = albums.getSelectionModel().getSelectedItem();
-		
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Album.fxml"));
-			//Parent parent = (Parent) loader.load();
-			AnchorPane root = (AnchorPane) loader.load();
-			AlbumController controller = loader.getController();
-			Scene scene = new Scene(root);
-			//Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			Stage stage = new Stage();
-			stage.setScene(scene);
-			stage.initOwner((Stage) ((Node) event.getSource()).getScene().getWindow());
-			stage.initModality(Modality.APPLICATION_MODAL);
-			
-			
-			controller.start(users, user, selectedAlbum);
-			
-			stage.showAndWait();
-			//stage.show();
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Deletes selected album and serializes the data
-	 */
-	public void handleDeleteAlbumButton() {
-		Album album = albums.getSelectionModel().getSelectedItem();
-
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Action Alert");
-		alert.setHeaderText("Confirmation Required");
-		alert.setContentText("Are you sure you want to delete \"" + album.getName() + "\"?");
-		alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-
-		Optional<ButtonType> result = alert.showAndWait();
-
-		if (result.get().equals(ButtonType.YES)) {
-			user.getAlbums().remove(album);
-			albums.getItems().remove(album);
-			albums.refresh();
-			SerializeData.writeData(users);
 		}
 	}
 	
 	/**
 	 * Renames album to user inputed text
 	 */
-	public void handleRenameButton() {
+	public void renameAlbum() {
 		
 		ObservableList<Album> albumList = albums.getItems();
 
@@ -200,30 +158,80 @@ public class NonAdminController {
 	}
 	
 	/**
+	 * Deletes selected album and serializes the data
+	 */
+	public void deleteAlbum() {
+		Album album = albums.getSelectionModel().getSelectedItem();
+
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Action Alert");
+		alert.setHeaderText("Confirmation Required");
+		alert.setContentText("Are you sure you want to delete \"" + album.getName() + "\"?");
+		alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+		Optional<ButtonType> result = alert.showAndWait();
+
+		if (result.get().equals(ButtonType.YES)) {
+			user.getAlbums().remove(album);
+			albums.getItems().remove(album);
+			albums.refresh();
+			SerializeData.writeData(users);
+		}
+	}
+	
+	/**
 	 * Opens Search Photo stage for user to search their photos
 	 * 
 	 * @param event
 	 */
-	public void handlesearchPhotosButton(ActionEvent event) {
+	public void searchPhotos(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Search Photo.fxml"));
-			//Parent parent = (Parent) loader.load();
 			AnchorPane root = (AnchorPane) loader.load();
 			PhotoSearchController controller = loader.getController();
 			Scene scene = new Scene(root);
-			//Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			Stage stage = new Stage();
 			stage.setScene(scene);
 			stage.initOwner((Stage) ((Node) event.getSource()).getScene().getWindow());
 			stage.initModality(Modality.APPLICATION_MODAL);
-			
-			
-			controller.start(user, users);
-			
+				
+			controller.start(user, users);		
 			stage.showAndWait();
-			//stage.show();
+
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Opens Album stage that displays content for selected album
+	 * @param event
+	 */
+	public void openAlbum(ActionEvent event) {
+		
+		Album selectedAlbum = albums.getSelectionModel().getSelectedItem();
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Album.fxml"));
+			AnchorPane root = (AnchorPane) loader.load();
+			AlbumController controller = loader.getController();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.initOwner((Stage) ((Node) event.getSource()).getScene().getWindow());
+			stage.initModality(Modality.APPLICATION_MODAL);
+	
+			controller.start(users, user, selectedAlbum);
+			stage.showAndWait();
+
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+
 }

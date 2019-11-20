@@ -11,12 +11,12 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="212.0">
          <children>
-            <Button fx:id="deleteAlbumButton" layoutX="14.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleDeleteAlbumButton" prefHeight="25.0" prefWidth="182.0" text="Delete Album" />
-            <Button fx:id="renameAlbumButton" layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleRenameButton" prefHeight="25.0" prefWidth="182.0" text="Rename Album" />
-            <Button fx:id="searchPhotosButton" layoutX="14.0" layoutY="264.0" mnemonicParsing="false" onAction="#handlesearchPhotosButton" prefHeight="25.0" prefWidth="182.0" text="Search Photos" />
-            <Button fx:id="addAlbumButton" layoutX="14.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleAddAlbumButton" prefHeight="25.0" prefWidth="182.0" text="Create Album " textAlignment="CENTER" />
-            <Button fx:id="openAlbumButton" layoutX="14.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleOpenAlbumButton" prefHeight="25.0" prefWidth="182.0" text="Open Album" />
-            <Button fx:id="logOutButton" layoutX="31.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="25.0" prefWidth="149.0" text="Logout" />
+            <Button fx:id="deleteAlbumButton" layoutX="14.0" layoutY="219.0" mnemonicParsing="false" onAction="#deleteAlbum" prefHeight="25.0" prefWidth="182.0" text="Delete Album" />
+            <Button fx:id="renameAlbumButton" layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#renameAlbum" prefHeight="25.0" prefWidth="182.0" text="Rename Album" />
+            <Button fx:id="searchPhotosButton" layoutX="14.0" layoutY="264.0" mnemonicParsing="false" onAction="#searchPhotos" prefHeight="25.0" prefWidth="182.0" text="Search Photos" />
+            <Button fx:id="addAlbumButton" layoutX="14.0" layoutY="129.0" mnemonicParsing="false" onAction="#addAlbum" prefHeight="25.0" prefWidth="182.0" text="Create Album " textAlignment="CENTER" />
+            <Button fx:id="openAlbumButton" layoutX="14.0" layoutY="309.0" mnemonicParsing="false" onAction="#openAlbum" prefHeight="25.0" prefWidth="182.0" text="Open Album" />
+            <Button fx:id="logOutButton" layoutX="31.0" layoutY="353.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="149.0" text="Logout" />
             <Label fx:id="Username" layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="182.0" text="Non-Admin Home Screen">
                <font>
                   <Font name="System Bold" size="14.0" />

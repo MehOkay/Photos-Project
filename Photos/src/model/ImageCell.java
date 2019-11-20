@@ -91,17 +91,21 @@ public class ImageCell extends ListCell<Photo> {
 		
 		if (photo == null) {
 			name.setText(" ");
+			
 			imageView.setImage(null);
 			caption.setText(" ");
 			nameValue.setText(" ");
+			
 			captionValue.setText(" ");
 		}
 		
-		if (photo != null) {
-			imageView.setImage(photo.getImage());
+		else if (photo != null) {
 			name.setText("Name: ");
+			imageView.setImage(photo.getImage());
+			
 			nameValue.setText(photo.getName());
 			caption.setText("Caption: ");
+			
 			captionValue.setText(photo.getCaption());
 		}
 	}
