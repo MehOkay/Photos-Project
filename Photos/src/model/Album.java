@@ -107,9 +107,14 @@ public class Album implements Serializable {
 		
 		if(!photos.isEmpty()) {
 			
+		this.updateDateRange();
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
 		minRange = formatter.format(this.minDate.getTime());  
 		maxRange = formatter.format(this.maxDate.getTime());
+		
+		//minRange = this.minDate.getTime().toString(); 
+		//maxRange = this.maxDate.getTime().toString();
 		
 		}
 		
