@@ -2,10 +2,13 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
+import javafx.scene.Parent;
+import javafx.scene.*;
 import model.Photo;
 import model.Tag;
 import model.User;
@@ -116,10 +119,16 @@ public class PhotoContentController {
 			}
 		}
 	}
-	
+	/*
 	public void exit() {
-		Stage stage = (Stage) X.getScene().getWindow();
-	    // do what you have to do
-	    stage.close();
-	}
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Album.fxml"));
+		Parent parent = (Parent) loader.load();
+		AlbumController controller = loader.<AlbumController>getController();
+		Scene scene = new Scene(parent);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		controller.start(users, user, selectedAlbum);
+		stage.setScene(scene);
+		stage.show();
+	}*/
+	
 }

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -15,21 +15,23 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="41.0" layoutY="70.0" text="Tag Name 1" />
-      <Label layoutX="143.0" layoutY="70.0" text="Tag Value 1" />
-      <Label layoutX="41.0" layoutY="129.0" text="Tag Name 2" />
-      <Label layoutX="143.0" layoutY="129.0" text="Tag Value 2" />
-      <TextField fx:id="tagName1" layoutX="36.0" layoutY="94.0" prefHeight="25.0" prefWidth="94.0" />
-      <TextField fx:id="tagValue1" layoutX="143.0" layoutY="94.0" prefHeight="25.0" prefWidth="94.0" />
-      <TextField fx:id="tagName2" layoutX="36.0" layoutY="158.0" prefHeight="25.0" prefWidth="94.0" />
-      <TextField fx:id="tagValue2" layoutX="143.0" layoutY="158.0" prefHeight="25.0" prefWidth="94.0" />
-      <Button fx:id="SearchOr" layoutX="266.0" layoutY="106.0" mnemonicParsing="false" onAction="#orSearch" text="Search for Either" />
-      <Button fx:id="SearchBoth" layoutX="269.0" layoutY="145.0" mnemonicParsing="false" onAction="#andSearch" text="Search for Both" />
-      <Label layoutX="41.0" layoutY="202.0" text="From" />
-      <Label layoutX="146.0" layoutY="202.0" text="To" />
-      <DatePicker fx:id="FromDate" layoutX="36.0" layoutY="237.0" prefHeight="25.0" prefWidth="94.0" />
-      <DatePicker fx:id="ToDate" layoutX="143.0" layoutY="237.0" prefHeight="25.0" prefWidth="94.0" />
-      <ScrollBar layoutX="360.0" layoutY="282.0" orientation="VERTICAL" prefHeight="163.0" prefWidth="14.0" />
+      <Label layoutX="41.0" layoutY="54.0" text="Tag Name 1" />
+      <Label layoutX="143.0" layoutY="54.0" text="Tag Value 1" />
+      <Label layoutX="41.0" layoutY="110.0" text="Tag Name 2" />
+      <Label layoutX="150.0" layoutY="110.0" text="Tag Value 2" />
+      <TextField fx:id="tagName1" layoutX="36.0" layoutY="78.0" prefHeight="25.0" prefWidth="94.0" />
+      <TextField fx:id="tagValue1" layoutX="143.0" layoutY="78.0" prefHeight="25.0" prefWidth="94.0" />
+      <TextField fx:id="tagName2" layoutX="36.0" layoutY="131.0" prefHeight="25.0" prefWidth="94.0" />
+      <TextField fx:id="tagValue2" layoutX="143.0" layoutY="131.0" prefHeight="25.0" prefWidth="94.0" />
+      <Button fx:id="SearchOr" layoutX="257.0" layoutY="86.0" mnemonicParsing="false" onAction="#Search" text="Search for Either" />
+      <Button fx:id="SearchAnd" layoutX="257.0" layoutY="127.0" mnemonicParsing="false" onAction="#Search" prefHeight="25.0" prefWidth="103.0" text="Search for Both" />
+      <Label layoutX="41.0" layoutY="183.0" text="From" />
+      <Label layoutX="143.0" layoutY="183.0" text="To" />
+      <DatePicker fx:id="FromDate" layoutX="36.0" layoutY="211.0" prefHeight="25.0" prefWidth="94.0" />
+      <DatePicker fx:id="ToDate" layoutX="143.0" layoutY="211.0" prefHeight="25.0" prefWidth="94.0" />
       <Button fx:id="createAlbum" layoutX="136.0" layoutY="463.0" mnemonicParsing="false" onAction="#createFromSearch" prefHeight="47.0" prefWidth="242.0" text="Create Album from Search Results" />
+      <ListView fx:id="photoDisplay" layoutX="30.0" layoutY="263.0" prefHeight="187.0" prefWidth="339.0" />
+      <Button fx:id="X" layoutX="357.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" text="X" />
+      <Button fx:id="SearchDate" layoutX="260.0" layoutY="211.0" mnemonicParsing="false" onAction="#Search" prefHeight="25.0" prefWidth="103.0" text="Search By Date" />
    </children>
 </AnchorPane>
