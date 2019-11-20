@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="400.0">
+         <children>
+            <Label alignment="CENTER" layoutX="47.0" layoutY="20.0" prefHeight="35.0" prefWidth="309.0" text="Select Album(s) to Move to" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Line endX="400.0000305175781" endY="289.5" layoutY="60.0" startX="-1.0172526344831567E-5" startY="289.5" />
+            <Line endX="400.0000305175781" endY="50.83332824707031" layoutX="-10.0" layoutY="15.0" startX="0.8333333134651184" startY="50.83333206176758" />
+            <Button fx:id="MoveP" layoutX="138.0" layoutY="376.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="122.0" text="Move Photos" />
+            <ListView fx:id="AlbumList" layoutX="33.0" layoutY="73.0" prefHeight="267.0" prefWidth="332.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
