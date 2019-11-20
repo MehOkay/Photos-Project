@@ -1,9 +1,8 @@
-package helper;
+package model;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import model.User;
 
 /**
  * Helper function class to serialize data

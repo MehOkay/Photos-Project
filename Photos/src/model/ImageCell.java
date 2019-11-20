@@ -1,21 +1,22 @@
-package helper;
+package model;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import model.Photo;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.image.ImageView;
 
 /**
- * Displays photo thumbnail in listview
+ * Displays photo thumbnail in listview. This class extends the ListCell class and is used to override the default ListCell for ListView
+ * 
+ * 
  * @author Wesley Cheung
  * @author Dennis Yu
  */
-public class PhotoCell extends ListCell<Photo> {
+public class ImageCell extends ListCell<Photo> {
 
 	Label caption = new Label(), captionValue = new Label(), name = new Label(), nameValue = new Label();
 	ImageView imageView = new ImageView();
@@ -25,20 +26,33 @@ public class PhotoCell extends ListCell<Photo> {
 	
 
 	/**
-	 * Constructor
+	 * Creates a new PhotoCell object. 
 	 */
-	public PhotoCell() {
+	public ImageCell() {
 		super();
 
 		name.setFont(Font.font("System", FontWeight.BOLD, 12));
+		
 		nameValue.setFont(Font.font(12));
+		
 		caption.setFont(Font.font("System", FontWeight.BOLD, 12));
+		
 		captionValue.setFont(Font.font(12));
 
-		imageView.setFitWidth(60.0);
-		imageView.setFitHeight(60.0);
+		imageView.setFitWidth(45.0);
+		imageView.setFitHeight(45.0);
 		imageView.setPreserveRatio(false);
 
+		AnchorPane.setTopAnchor(caption, 40.0);
+		
+		AnchorPane.setLeftAnchor(caption, 70.0);
+		
+		AnchorPane.setLeftAnchor(captionValue, 120.0);
+		
+		AnchorPane.setTopAnchor(captionValue, 40.0);
+		
+		
+		
 		StackPane.setAlignment(imageView, Pos.CENTER);
 
 		stackPane.getChildren().add(imageView);
@@ -48,15 +62,15 @@ public class PhotoCell extends ListCell<Photo> {
 
 		AnchorPane.setLeftAnchor(stackPane, 0.0);
 
-		AnchorPane.setLeftAnchor(name, 55.0);
-		AnchorPane.setTopAnchor(name, 0.0);
-		AnchorPane.setLeftAnchor(nameValue, 95.0);
-		AnchorPane.setTopAnchor(nameValue, 0.0);
+		AnchorPane.setLeftAnchor(name, 70.0);
+		
+		AnchorPane.setTopAnchor(name, 15.0);
+		
+		AnchorPane.setLeftAnchor(nameValue, 120.0);
+		
+		AnchorPane.setTopAnchor(nameValue, 15.0);
 
-		AnchorPane.setLeftAnchor(caption, 55.0);
-		AnchorPane.setTopAnchor(caption, 24.0);
-		AnchorPane.setLeftAnchor(captionValue, 105.0);
-		AnchorPane.setTopAnchor(captionValue, 24.0);
+		
 
 		anchorPane.getChildren().addAll(stackPane, name, nameValue, caption, captionValue);
 
@@ -74,13 +88,15 @@ public class PhotoCell extends ListCell<Photo> {
 	public void updateItem(Photo photo, boolean empty) {
 		super.updateItem(photo, empty);
 		setText(null);
+		
 		if (photo == null) {
-			imageView.setImage(null);
 			name.setText(" ");
-			nameValue.setText(" ");
+			imageView.setImage(null);
 			caption.setText(" ");
+			nameValue.setText(" ");
 			captionValue.setText(" ");
 		}
+		
 		if (photo != null) {
 			imageView.setImage(photo.getImage());
 			name.setText("Name: ");

@@ -3,7 +3,6 @@ package controller;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import helper.SerializeData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Album;
+import model.SerializeData;
 import model.User;
 //import util.CommonFunctions;
 

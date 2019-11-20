@@ -16,7 +16,7 @@ public class Photo implements Serializable, Comparable<Photo> {
 	private static final long serialVersionUID = 6955723612371190680L;
 	private ArrayList<Tag> tags;
 	private String name, caption;
-	private SerializableImage image;
+	private ConvertedImage image;
 	private Calendar date;
 
 	/**
@@ -25,7 +25,7 @@ public class Photo implements Serializable, Comparable<Photo> {
 	 * @param image the image to be represented by the photo
 	 * @param date the last modified date
 	 */
-	public Photo(String name, SerializableImage image, Calendar date) {
+	public Photo(String name, ConvertedImage image, Calendar date) {
 		this.name = name;
 		this.caption = "";
 		this.image = image;
@@ -43,7 +43,7 @@ public class Photo implements Serializable, Comparable<Photo> {
 	public Photo(String name, Image image, Calendar date) {
 		this.name = name;
 		this.caption = "";
-		this.image = new SerializableImage(image);
+		this.image = new ConvertedImage(image);
 		this.date = date;
 		this.tags = new ArrayList<Tag>();
 		this.date.set(Calendar.MILLISECOND, 0);
