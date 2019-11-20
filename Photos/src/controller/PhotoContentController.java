@@ -4,9 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.collections.FXCollections;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.Parent;
 import javafx.scene.*;
 import model.Photo;
@@ -90,8 +89,13 @@ public class PhotoContentController {
 		
 		//Check Duplicate
 		for(int i = 0; i < tagList.size(); i++) {
-			if(tagList.get(i).equals(input)) {
-				//error
+			if(tagList.get(i).equals(input)){
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error Alert");
+				alert.setHeaderText("Error Adding Tag to Photo");
+				alert.setContentText("Duplicate Tag for Photo");
+
+				alert.showAndWait();
 				return;
 			}
 		}
