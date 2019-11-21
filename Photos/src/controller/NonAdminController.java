@@ -186,7 +186,7 @@ public class NonAdminController {
 	 */
 	public void searchPhotos(ActionEvent event) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Search Photo.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SearchPhoto.fxml"));
 			AnchorPane root = (AnchorPane) loader.load();
 			PhotoSearchController controller = loader.getController();
 			Scene scene = new Scene(root);

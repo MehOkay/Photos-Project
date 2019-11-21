@@ -90,7 +90,7 @@ public class PhotoSearchController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Alert");
 			alert.setHeaderText("Error Adding Tag");
-			alert.setContentText("Tag Name 2 and Tag Value 2 text field must be empty");
+			alert.setContentText("Only fill in tag name 1 and tag value 1 fields to add a tag.");
 
 			alert.showAndWait();
 			return;

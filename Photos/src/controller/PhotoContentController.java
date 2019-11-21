@@ -9,6 +9,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.Parent;
 import javafx.scene.*;
 import model.Photo;
+import model.SerializeData;
 import model.Tag;
 import model.User;
 import model.Album;
@@ -58,7 +59,7 @@ public class PhotoContentController {
 		int i = photos.getSelectionModel().getSelectedIndex();
 		// Cycle through Photos
 		if (b == right) {
-			if (i < photos.getItems().size())
+			if (i < photos.getItems().size()-1)
 				i++;
 			else
 				i = 0;
@@ -70,24 +71,27 @@ public class PhotoContentController {
 		}
 
 		// Display
-		photos.getSelectionModel().clearAndSelect(i);
+		photos.getSelectionModel().select(i);
 		Photo photo = photos.getSelectionModel().getSelectedItem();
 		Display.setImage(photo.getImage());
 		photoName.setText(photo.getName());
 		CaptionDisplay.setText(photo.getCaption());
 		DateModified.setText(date.format(photo.getDate().getTime()));
+		tags.setItems(FXCollections.observableArrayList(photo.getTags()));
+		tags.refresh();
 	}
 
 	// Add input to tags for Photo
 	public void add() {
-		ArrayList<Tag> tagList = photos.getSelectionModel().getSelectedItem().getTags();
+		Photo photo = photos.getSelectionModel().getSelectedItem();
+		ArrayList<Tag> tagList = photo.getTags();
 		Tag input = new Tag(tagName.getText(), tagValue.getText());
 		tagName.clear();
 		tagValue.clear();
 
 		// Check Duplicate
-		for (int i = 0; i < tagList.size(); i++) {
-			if (tagList.get(i).equals(input)) {
+		for (int i = 0; i < photo.getTags().size(); i++) {
+			if (photo.getTags().get(i).equals(input)) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error Alert");
 				alert.setHeaderText("Error Adding Tag to Photo");
@@ -97,28 +101,43 @@ public class PhotoContentController {
 				return;
 			}
 		}
-		tagList.add(input);
-		tags.getItems().add(input);
+		photo.getTags().add(input);
+		//tagList.add(input);
+		tags.setItems(FXCollections.observableArrayList(photo.getTags()));
+		//tags.getItems().add(input);
+		
 		tags.refresh();
 		tags.getSelectionModel().select(0);
+		SerializeData.writeData(users);
 	}
 
 	// Delete tag that matches input for Photo
 	public void delete() {
-		ArrayList<Tag> tagList = photos.getSelectionModel().getSelectedItem().getTags();
-		Tag input = new Tag(tagName.getText(), tagValue.getText());
+		Photo photo = photos.getSelectionModel().getSelectedItem();
+		ArrayList<Tag> tagList = photo.getTags();
+		Tag input = tags.getSelectionModel().getSelectedItem();//new Tag(tagName.getText(), tagValue.getText());
 		tagName.clear();
 		tagValue.clear();
 
 		// Search for input
 		for (int i = 0; i < tagList.size(); i++) {
 			if (tagList.get(i).equals(input)) {
+				
 				tags.getItems().remove(tagList.get(i));
-				tags.refresh();
+				
 				tags.getSelectionModel().select(0);
-				tagList.remove(i);
+				
+				photo.getTags().remove(i);
+				tags.setItems(FXCollections.observableArrayList(photo.getTags()));
+				tags.refresh();
+				//System.out.println("Here");
+				SerializeData.writeData(users);
 				return;
 			}
 		}
+		
+		
+		
+		
 	}
 }
