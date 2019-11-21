@@ -1,12 +1,13 @@
 package controller;
 
 import javafx.fxml.FXML;
+
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.Parent;
-import javafx.scene.*;
 import model.Photo;
+import model.SerializeData;
 import model.User;
 import model.Album;
 
@@ -16,11 +17,14 @@ public class MovePhotoController {
 	@FXML Button MoveP;
 	User user;
 	ListView<Album> albums;
+	ArrayList<User> users;
 	Photo photo;
 	Album album;
+	Album d;
 	
-	public void start(Album album, Photo photo, User user, ListView<Album> albums) {
+	public void start(Album album, Photo photo, User user, ArrayList<User> users) {
 		this.user = user;
+		this.users = users;
 		this.photo = photo;
 		this.albums = albums;
 		AlbumList.setItems(FXCollections.observableArrayList(albums.getSelectionModel().getSelectedItem().getName()));
@@ -28,7 +32,7 @@ public class MovePhotoController {
 
 		MoveP.setOnAction(event -> {
 			String dest = AlbumList.getSelectionModel().getSelectedItem(); 
-			Album d;
+			
 			for (int i = 0; i < albums.getItems().size(); i++) {
 				if(albums.getItems().get(i).getName().equals(dest)) 
 					d = albums.getItems().get(i);
@@ -44,6 +48,6 @@ public class MovePhotoController {
 			}
 			
 		});
-
+		SerializeData.writeData(users);
 	}
 }
