@@ -31,6 +31,12 @@ import model.Photo;
 import model.SerializeData;
 import model.User;
 
+/**
+ * Controls the Album Stage
+ * @author Wesley Cheung
+ * @author Dennis Yu
+ *
+ */
 public class AlbumController {
 	@FXML
 	private Button add, remove, move, copy, CaptionEdit, openPhoto;
@@ -44,6 +50,13 @@ public class AlbumController {
 	private User user;
 	private Album selectedAlbum;
 	
+	/**
+	 * Starts up the Album Stage
+	 * 
+	 * @param users
+	 * @param user
+	 * @param selectedAlbum
+	 */
 	public void start(ArrayList<User> users, User user, Album selectedAlbum) {
 		
 		this.users = users;
@@ -76,6 +89,9 @@ public class AlbumController {
 
 	}
 	
+	/**
+	 * Opens a file chooser to select photo to add
+	 */
 	public void addPhoto() {
 		FileChooser c = new FileChooser();
 		
@@ -127,6 +143,10 @@ public class AlbumController {
 		SerializeData.writeData(users);
 	}
 	
+	/**
+	 * Opens Copy Stage for copying photos
+	 * @param event
+	 */
 	public void copyPhoto(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Copy.fxml"));
@@ -147,9 +167,15 @@ public class AlbumController {
 		//SerializeData.writeData(users);
 	}
 	
+	/**
+	 * Opens Move Photo Stage to move photos
+	 * @param event
+	 */
 	public void MovePhoto(ActionEvent event) {
+		Photo selectedPhoto = photos.getSelectionModel().getSelectedItem();
+		
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Copy.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Move.fxml"));
 			AnchorPane root = (AnchorPane) loader.load();
 			MovePhotoController controller = loader.getController();
 			Scene scene = new Scene(root);
@@ -157,8 +183,21 @@ public class AlbumController {
 			stage.setScene(scene);
 			stage.initOwner((Stage) ((Node) event.getSource()).getScene().getWindow());
 			stage.initModality(Modality.APPLICATION_MODAL);
-	
-			//controller.start(users, photos, user, selectedAlbum);
+			
+			if(users==null) {
+				System.out.println("1");
+			}
+			if(user==null) {
+				System.out.println("2");
+			}
+			if(selectedPhoto == null) {
+				System.out.println("3");
+			}
+			if(selectedAlbum == null) {
+				System.out.println("4");
+			}
+			
+			controller.start(users, user, selectedPhoto, selectedAlbum);
 			stage.showAndWait();
 
 		} catch (Exception exception) {
@@ -167,6 +206,9 @@ public class AlbumController {
 		//SerializeData.writeData(users);
 	}
 	
+	/**
+	 * Edits the caption of selected image
+	 */
 	public void edit() {
 		photos.getSelectionModel().getSelectedItem().setCaption(editField.getText());
 		photos.refresh();
@@ -174,6 +216,10 @@ public class AlbumController {
 		SerializeData.writeData(users);
 	}
 	
+	/**
+	 * Opens Photo Slideshow Stage
+	 * @param event
+	 */
 	public void openSlideShow(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Photo.fxml"));
