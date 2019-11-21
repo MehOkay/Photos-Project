@@ -76,6 +76,7 @@ public class PhotoContentController {
 		photoName.setText(photo.getName());
 		CaptionDisplay.setText(photo.getCaption());
 		DateModified.setText(date.format(photo.getDate().getTime()));
+		tags.refresh();
 	}
 
 	// Add input to tags for Photo
@@ -120,5 +121,6 @@ public class PhotoContentController {
 				return;
 			}
 		}
+		
 	}
 }
