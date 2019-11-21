@@ -15,6 +15,7 @@ import java.util.Calendar;
 import java.util.ArrayList;
 import model.User;
 import model.Photo;
+import model.SerializeData;
 import model.Tag;
 import model.Album;
 import model.ImageCell;
@@ -176,19 +177,26 @@ public class PhotoSearchController {
 			}
 		} else if (b == Date) {
 			if (checkDates()) {
+				
 				String[] from = FromDate.getValue().toString().split("-");
 				String[] to = ToDate.getValue().toString().split("-");
 				LocalDate fr = LocalDate.of(Integer.parseInt(from[0]), Integer.parseInt(from[1]),
 						Integer.parseInt(from[2]));
-				LocalDate t = LocalDate.of(Integer.parseInt(to[0]), Integer.parseInt(to[1]), Integer.parseInt(to[2]));
+				LocalDate t = LocalDate.of(Integer.parseInt(to[0]), Integer.parseInt(to[1]), 
+						Integer.parseInt(to[2]));
 
 				for (int i = 0; i < albums.size(); i++) {
 					ArrayList<Photo> photos = albums.get(i).getPhotos();
 					for (int j = 0; j < photos.size(); j++) {
-						if (photos.get(j).getDate().after(from) && photos.get(j).getDate().before(t))
-							if (!displayList.contains(photos.get(j)))
+						LocalDate localDate = LocalDateTime.ofInstant(photos.get(j).getDate().toInstant(), 
+								photos.get(j).getDate().getTimeZone().toZoneId()).toLocalDate();
+						if (localDate.isAfter(fr) && localDate.isBefore(t)) {
+							System.out.println("here");
+							if (!displayList.contains(photos.get(j))) {
+							
 								photoDisplay.getItems().add(photos.get(j));
-				}}
+							}
+				}}}
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error Alert");
@@ -224,6 +232,7 @@ public class PhotoSearchController {
 
 		for (int i = 0; i < photoDisplay.getItems().size(); i++)
 			album.getPhotos().add(photoDisplay.getItems().get(i));
-
+		
+		SerializeData.writeData(users);
 	}
 }
