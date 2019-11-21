@@ -24,12 +24,13 @@ public class PhotoContentController {
 	@FXML
 	TextField tagName, tagValue;
 	@FXML
-	Label DateModified, CaptionDisplay, PhotoName;
+	Label DateModified, CaptionDisplay, photoName;
 	@FXML
 	ImageView Display;
 
 	ListView<Photo> photos;
 	ArrayList<User> users;
+	@FXML
 	private ListView<Tag> tags;
 	private Album album;
 	private User user;
@@ -41,8 +42,11 @@ public class PhotoContentController {
 		this.album = album;
 		this.user = user;
 		Photo photo = photos.getSelectionModel().getSelectedItem();
+		/*if(photo != null) {
+			System.out.println(photo.getName());
+		}*/
 		Display.setImage(photo.getImage());
-		PhotoName.setText(photo.getName());
+		photoName.setText(photo.getName());
 		CaptionDisplay.setText(photo.getCaption());
 		DateModified.setText(date.format(photo.getDate().getTime()));
 		tags.setItems(FXCollections.observableArrayList(photos.getSelectionModel().getSelectedItem().getTags()));
@@ -69,7 +73,7 @@ public class PhotoContentController {
 		photos.getSelectionModel().clearAndSelect(i);
 		Photo photo = photos.getSelectionModel().getSelectedItem();
 		Display.setImage(photo.getImage());
-		PhotoName.setText(photo.getName());
+		photoName.setText(photo.getName());
 		CaptionDisplay.setText(photo.getCaption());
 		DateModified.setText(date.format(photo.getDate().getTime()));
 	}

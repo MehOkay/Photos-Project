@@ -2,49 +2,42 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PhotoContentController">
    <children>
-      <Label layoutX="165.0" layoutY="30.0" text="Photo View">
+      <Label fx:id="photoName" alignment="CENTER" layoutX="52.0" layoutY="30.0" prefHeight="35.0" prefWidth="362.0" text="Photo View">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="right" layoutX="296.0" layoutY="35.0" mnemonicParsing="false" onAction="#switchPhoto" text="&gt;" />
-      <Button fx:id="left" layoutX="131.0" layoutY="35.0" mnemonicParsing="false" onAction="#switchPhoto" text="&lt;" />
+      <Button fx:id="right" layoutX="416.0" layoutY="35.0" mnemonicParsing="false" onAction="#switchPhoto" text="&gt;" />
+      <Button fx:id="left" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#switchPhoto" text="&lt;" />
       <Line endX="348.9999694824219" layoutX="100.0" layoutY="76.0" startX="-100.0" />
       <Line endX="349.0000305175781" layoutX="101.0" layoutY="289.0" startX="-100.0" />
-      <Label layoutX="14.0" layoutY="308.0" text="Caption:">
+      <Label layoutX="19.0" layoutY="302.0" text="Caption:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="392.0" text="Date Modifed:">
+      <Label layoutX="19.0" layoutY="337.0" text="Date Modifed:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="CaptionDisplay" layoutX="91.0" layoutY="308.0" prefHeight="27.0" prefWidth="57.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="DateModified" layoutX="136.0" layoutY="392.0" prefHeight="27.0" prefWidth="57.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="addTag" layoutX="292.0" layoutY="393.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="89.0" text="Add Tag" />
-      <Button fx:id="deleteTag" layoutX="292.0" layoutY="426.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="89.0" text="Delete Tag" />
-      <TextArea fx:id="tagName" layoutX="245.0" layoutY="342.0" prefHeight="35.0" prefWidth="89.0" />
-      <ImageView fx:id="Display" fitHeight="159.0" fitWidth="381.0" layoutX="34.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="photoName" alignment="CENTER" layoutX="175.0" layoutY="88.0" prefHeight="27.0" prefWidth="100.0" />
-      <TextArea fx:id="tagValue" layoutX="339.0" layoutY="342.0" prefHeight="35.0" prefWidth="89.0" />
-      <Label layoutX="245.0" layoutY="300.0" prefHeight="27.0" prefWidth="183.0" text="    Tag Name            Tag Value" />
+      <Label fx:id="CaptionDisplay" layoutX="88.0" layoutY="303.0" prefHeight="27.0" prefWidth="343.0" />
+      <Label fx:id="DateModified" layoutX="137.0" layoutY="338.0" prefHeight="25.0" prefWidth="308.0" />
+      <Button fx:id="addTag" layoutX="52.0" layoutY="460.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="89.0" text="Add Tag" />
+      <Button fx:id="deleteTag" layoutX="278.0" layoutY="460.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="89.0" text="Delete Tag" />
+      <ImageView fx:id="Display" fitHeight="207.0" fitWidth="450.0" layoutY="78.0" pickOnBounds="true" />
+      <Label layoutX="14.0" layoutY="389.0" prefHeight="27.0" prefWidth="183.0" text="    Tag Name            Tag Value" />
+      <TextField fx:id="tagValue" layoutX="113.0" layoutY="420.0" prefHeight="25.0" prefWidth="72.0" />
+      <TextField fx:id="tagName" layoutX="19.0" layoutY="420.0" prefHeight="25.0" prefWidth="66.0" />
+      <ListView fx:id="tags" layoutX="214.0" layoutY="378.0" prefHeight="76.0" prefWidth="217.0" />
    </children>
 </AnchorPane>
