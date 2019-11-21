@@ -4,6 +4,7 @@ import java.text.*;
 import java.time.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.util.Callback;
 import javafx.scene.*;
 import javafx.fxml.*;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import model.User;
 import model.Photo;
 import model.Tag;
 import model.Album;
+import model.ImageCell;
 
 public class PhotoSearchController {
 	@FXML
@@ -57,44 +59,17 @@ public class PhotoSearchController {
 				}
 			}
 		}
+		
+		photoDisplay.setCellFactory(
+				new Callback<ListView<Photo>, ListCell<Photo>>() {
+					@Override
+					public ListCell<Photo> call(ListView<Photo> photoList) {
+						return new ImageCell();
+					}
+			});
+
 		TagNames.setItems(FXCollections.observableArrayList(tagNames));
 		TagValues.setItems(FXCollections.observableArrayList(tagValues));
-	}
-
-	public void addTag() {
-		if (tagName2.getText().isBlank() && tagValue2.getText().isBlank() && !tagName1.getText().isBlank()
-				&& !tagValue1.getText().isBlank()) {
-			ObservableList<Tag> tagList = tags.getItems();
-			Tag input = new Tag(tagName1.getText(), tagValue1.getText());
-			for (int i = 0; i < tagList.size(); i++) {
-				if (tagList.get(i).equals(input)) {
-					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error Alert");
-					alert.setHeaderText("Error Adding Tag");
-					alert.setContentText("Duplicate Tag");
-
-					alert.showAndWait();
-					return;
-				}
-			}
-
-			tags.getItems().add(input);
-			tags.refresh();
-			tags.getSelectionModel().select(0);
-			TagNames.refresh();
-			TagNames.getSelectionModel().select(0);
-			TagValues.refresh();
-			TagValues.getSelectionModel().select(0);
-
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error Alert");
-			alert.setHeaderText("Error Adding Tag");
-			alert.setContentText("Only fill in tag name 1 and tag value 1 fields to add a tag.");
-
-			alert.showAndWait();
-			return;
-		}
 	}
 
 	public void search(ActionEvent e) {
@@ -124,7 +99,7 @@ public class PhotoSearchController {
 						ArrayList<Tag> tags = photos.get(j).getTags();
 						for (int k = 0; k < tags.size(); k++) {
 							if (tags.get(k).equals(input1)) {
-								displayList.add(photos.get(j));
+								photoDisplay.getItems().add(photos.get(j));
 								break;
 							}
 						}
@@ -150,7 +125,7 @@ public class PhotoSearchController {
 						ArrayList<Tag> tags = photos.get(j).getTags();
 						for (int k = 0; k < tags.size(); k++) {
 							if (tags.get(k).equals(input1) || tags.get(k).equals(input2)) {
-								displayList.add(photos.get(j));
+								photoDisplay.getItems().add(photos.get(j));
 								break;
 							}
 						}
@@ -185,7 +160,7 @@ public class PhotoSearchController {
 								two = true;
 						}
 						if (one && two)
-							displayList.add(photos.get(j));
+							photoDisplay.getItems().add(photos.get(j));
 						one = false;
 						two = false;
 					}
@@ -212,8 +187,8 @@ public class PhotoSearchController {
 					for (int j = 0; j < photos.size(); j++) {
 						if (photos.get(j).getDate().after(from) && photos.get(j).getDate().before(t))
 							if (!displayList.contains(photos.get(j)))
-								displayList.add(photos.get(j));}
-				}
+								photoDisplay.getItems().add(photos.get(j));
+				}}
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error Alert");
@@ -225,7 +200,7 @@ public class PhotoSearchController {
 			}
 		} 
 		photoDisplay.refresh();
-		photoDisplay.setItems(FXCollections.observableArrayList(displayList));
+		
 		photoDisplay.getSelectionModel().select(0);
 		tagName1.clear();
 		tagValue1.clear();
