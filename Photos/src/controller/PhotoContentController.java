@@ -76,6 +76,7 @@ public class PhotoContentController {
 		photoName.setText(photo.getName());
 		CaptionDisplay.setText(photo.getCaption());
 		DateModified.setText(date.format(photo.getDate().getTime()));
+		tags.setItems(FXCollections.observableArrayList(photo.getTags()));
 		tags.refresh();
 	}
 
