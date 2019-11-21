@@ -58,7 +58,7 @@ public class PhotoContentController {
 		int i = photos.getSelectionModel().getSelectedIndex();
 		// Cycle through Photos
 		if (b == right) {
-			if (i < photos.getItems().size())
+			if (i < photos.getItems().size()-1)
 				i++;
 			else
 				i = 0;
@@ -70,7 +70,7 @@ public class PhotoContentController {
 		}
 
 		// Display
-		photos.getSelectionModel().clearAndSelect(i);
+		photos.getSelectionModel().select(i);
 		Photo photo = photos.getSelectionModel().getSelectedItem();
 		Display.setImage(photo.getImage());
 		photoName.setText(photo.getName());

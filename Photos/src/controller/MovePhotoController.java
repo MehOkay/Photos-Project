@@ -18,6 +18,7 @@ public class MovePhotoController {
 	ListView<Album> albums;
 	Photo photo;
 	Album album;
+	Album d;
 	
 	public void start(Album album, Photo photo, User user, ListView<Album> albums) {
 		this.user = user;
@@ -28,7 +29,7 @@ public class MovePhotoController {
 
 		MoveP.setOnAction(event -> {
 			String dest = AlbumList.getSelectionModel().getSelectedItem(); 
-			Album d;
+			
 			for (int i = 0; i < albums.getItems().size(); i++) {
 				if(albums.getItems().get(i).getName().equals(dest)) 
 					d = albums.getItems().get(i);
