@@ -1,0 +1,29 @@
+Work Split Group 38
+Dennis Yu
+Wesley Cheung
+
+login Scene 			Dennis
+adminHome Scene			Wesley
+	list 
+	create
+	delete
+Non-Admin Home Scene		Dennis
+	Create Album 
+	Delete Album
+	Rename Album 
+
+Album Home Scene		Wesley
+	Add photo
+	remove photo
+	caption photo
+	recaption photo
+	display photos
+
+Copy Scene 			Dennis 
+Move Scene			Dennis
+File Search 			Wesley
+
+Photo Search Scene		Dennis
+search with tags 		Dennis
+serach with date 		Dennis
+Create Album from Search	Wesley
