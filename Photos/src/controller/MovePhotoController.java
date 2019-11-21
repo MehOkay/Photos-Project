@@ -6,9 +6,6 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.Parent;
-import javafx.scene.*;
 import model.Photo;
 import model.SerializeData;
 import model.User;
@@ -22,17 +19,23 @@ public class MovePhotoController {
 	
 	@FXML
 	ListView<Album> albums;
+
 	
 	private ArrayList<User> users;
 	private Photo selectedPhoto;
 	private Album originalAlbum;
+
 	Album d;
 	
+
 	//public void start(ArrayList<User> users, Album album, Photo photo, User user, ListView<Album> albums) {
 	public void start(ArrayList<User> users, User user, Photo selectedPhoto, Album originalAlbum) {
+
 		this.user = user;
+
 		this.selectedPhoto = selectedPhoto;
 		this.originalAlbum = originalAlbum;
+
 		this.albums = albums;
 		albums.setItems(FXCollections.observableArrayList(user.getAlbums()));
 		albums.getSelectionModel().select(0);
@@ -59,10 +62,12 @@ public class MovePhotoController {
 			}
 			
 			
+<<<<<<< HEAD
 			d.getPhotos().add(photo);
 			
 			
 		});*/
+
 
 	}
 	
